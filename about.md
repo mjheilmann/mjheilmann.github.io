@@ -4,12 +4,14 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+I am a Software Engineer and Software Architect currently located in Central Florida.  I attended Washington State University Vancouver for my Bachelors of Science in Computer Science, graduating with a Mathematics minor in 2009.  I continued there for my Masters of Science degree in Computer Science in 2011.
 
-### More Information
+I currently work for the University of Central Florida; specifically in the Institute for Simulation and Training.  I work closely with with local Army Research Lab branches on simulations and training effectiveness studies.
 
-A place to include any other types of information that you'd like to include about yourself.
+### Topics and Interests
+
+While I can hope all day that this blog will be an amazing masterpiece of technical reporting and detail; but as my interests are wide and varied, the posts will vary.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+I can be reached through linkedin, github, and google+, though I am afraid I cant be bothered to figure that all out here just yet.
