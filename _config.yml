@@ -6,7 +6,7 @@
 name: Michael Heilmann
 
 # Short bio or description (displayed in the header)
-description: System Engineer and Architect
+description: Software Engineer and Systems Architect
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
@@ -19,11 +19,11 @@ avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/je
 footer-links:
   dribbble:
   email:
-  facebook:
+  facebook: mjheilmann
   flickr:
-  github: # barryclark/jekyll-now
+  github: mjheilmann # barryclark/jekyll-now
   instagram:
-  linkedin:
+  linkedin: mjheilmann
   pinterest:
   rss: # just type anything here for a working RSS icon
   twitter: # jekyllrb
