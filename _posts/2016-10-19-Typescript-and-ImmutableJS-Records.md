@@ -1,114 +1,42 @@
 ---
 layout: post
 title: Typescript and ImmutableJS Records
+published: true
 ---
 
-Typescript and ImmutableJS should go together like peas in a pod.  One is a development language that allows for powerful object-oriented development in what is still a dynamic and interpreted language, and the other is a library for creating immutable objects in that same language.  I use them together, and maybe so should you.  I will not be going over ImmutableJS and it's types here.
+I have been working on web applications lately.  Working independently or on small teams, I find ReactJS to be quick and easy to write.  But in learning how to write better, and better performing React code, I should start using other libraries, such as ImmutableJS.  All good things and I like what I see with only one glaring exception:  I work in Typescript.
 
-There is a shadow over the relationship between Typescript and ImmutableJS: Even with Typescript definitions included, ImmutableJS loses the benefits of type safety.  I primarily use Map and Record in my applications, but the big offender is Record:
+Typescript is great!  I rarely - if ever - use dynamic typing to mix data types, and the added interfaces and code completiong for a dynamic language is fantastic.  I wish there was something similar for my old flame Python.
 
-1. Records are type-safe, but if you call .set() to get an updated copy, Typescript thinks you are getting a Map<>.  Not only can you not assign it back to the same variable without casting it, but you cannot chain calls to keep your code readable.
-2. Records allow you to access their fields as properties, but Typescript can't tell what these are.
-3. Records throw a runtime error if you assign to a property instead of calling set(), the Typescript compiler will not stop you.
+Why is Typescript a glaring exception?  Yes, I can load the typings definition and access the exposed API.  Unfortunately Immutable objects are not represented correctly in Typescript definitions.  They can't be, they rely on the dynamic sauce present in javascript that Typescript cannot capture.  Records are created at runtime.  Property access to fields isn't supported, and you will be casting data types often when using get().  CAlling set() is not typesafe, as all it wants is an <any>.  Accessing a deeply nested object?  Welcome to (((object as type).object as type).object as type).  I want my code to be simple and readable.  Clean debuggable code is elegant code.
 
-These are not because of negligence by Facebook on the part of their ImmutableJS definitions, its just how things are.
+## The Fix
 
-### Case Study 1: Property Access
+I can rant with the best of them, but if you don't propose a solution you are wasting everyones time, including your own.  It takes some legwork, but I have a solution that works.  We will create child classes in typescript that wrap the Immutable properties we love.
 
-So I have a project that uses React, Node.js, and socket.io.  The Node.js application is sending objects across the web-socket, and I would like to wrap these into immutable objects.  Like a good Typescript developer, I have a series of interfaces declared for the Node.js and React applications to share:
+Lets create an immutable User class module.  All of the following segments will live in the same module.  Create an interface for the class:
 
 {% highlight ts %}
-export interface IUser {
+interface IUser {
   firstName: string
   lastName: string
   email: string
 }
-
-export interface IGroup {
-  name: string
-  members: IUser[]
-}
 {% endhighlight %}
 
-I have two interfaces to represent two of the objects that my server will send me.  Since I really want these to be immutable (these are from a database which the client has no business changing), I create a set of RecordClass objects so I can wrap incoming objects:
+This is a normal interface declaration for typescript.  Note that it is not exported.  Now we generate a Record whose definition is suspiciously close to our interface.  Here it is:
 
 {% highlight ts %}
-export const UserClass = Record({
-  firstName: '',
-  lastName: '',
-  email: ''
-})
-
-export const GroupClass = Record({
-  name: '',
-  members: new IGroup[]
-})
-{% endhighlight %}
-
-With those classes in place, every time I receive an IUser or IGroup object, I can call UserClass() or GroupClass() and convert them into a record.  But lets highlight some of the problems I am about to face:
-
-{% highlight ts %}
-let user = UserClass({ ... });
-// typescript error
-let fName = user.firstName;
-// typescript error
-let lName = user.lastName;
-// works, if you can remember the fields
-let email = user.get('email');
-{% endhighlight %}
-
-The Typescript compiler will not allow for property access to the fields, even though it is valid in Javascript.  All values must be accessed by using .get(), which is not type-checked or validated.  Bonus points for having to look back at your interface declaration if you haven't this code in a while.
-
-### Case Study 2: Updating Record, and Chaining
-
-Lets say in my application that I like immutable so much, that I am storing the auth data returned from a successful login into an immutable Record.  I will create the RecordClass like so:
-
-{% highlight ts %}
-const AuthClass = Record({
-  loggedIn: false,
-  userName: '',
-  accessLevel: ''
-})
-{% endhighlight %}
-
-Well this is working fine!  I can create a record on page load and update it as my user authenticates.
-
-{% highlight ts %}
-let auth = AuthClass(); // default for now
-
-// Whoops! set() returns a Map, Typescript error
-auth = auth.set('loggedIn', true);  
-
-// works, but only if this isn't a ReactJS .tsx file
-auth = <AuthClass>auth.set('loggedIn', true);
-
-// this one works
-auth = (((auth.set('loggedIn', true) as AuthClass
-    ).set('username', '...') as AuthClass
-  ).set('accessLevel', 0))
-{% endhighlight %}
-
-Now you are probably thinking, why on earth would you want to chain them like that?  Because it is supposed to work that way; plus if you replace "auth =" with "return" it is a fragment from a Redux reducer.  Why did I switch from casting using <AuthClass> to casting using ( as AuthClass)?  This is a React application, and hard brackets is recognized as a React.Element instruction.  Casting with <AuthClass> will cause compilation issues in a jsx or tsx file as AuthClass is not a subclass of React.Element.
-
-This is usable, but I think it can get better.
-
-### Solution: Wrapping a Record
-
-Luckily for us, we can create our own Typescript data structure that will fix all of this for us.  I'll put the entire code for one here, and then discuss it:
-
-{% highlight ts %}
-export interface IUser {
-  firstName: string
-  lastName: string
-  email: string
-}
-
 const UserClass = Record({
   firstName: '',
   lastName: '',
   email: ''
 })
+{% endhighlight %}
 
+This is normal Record class creation.  But note that we didn't export this one either.  These exist only within our module so that we can do the next step:
+
+{% highlight ts %}
 export class User extends UserClass implements IUser {
   readonly firstName: string
   readonly lastName: string
@@ -120,27 +48,42 @@ export class User extends UserClass implements IUser {
 }
 {% endhighlight %}
 
-There we are.  Now what good is this?  Lets run through a few examples:
+That right there is our typescript class definition.  That is what we will instantiate, and pass around.  It is an immutable Record, and behaves exactly like a record, but it is understandable by both my Typescript IDE and my compiler.
+
+Inside of the User class, you can replace the generic set() function with normal object-oriented setters to enable better type safety.  But I will admit here that I have a class or two that use set(key: string, object: type1 | type2 | type3 | type4 | type5).  We also cast the types back to a User isntance from set(), which is correct.  Immutable typings definitions return a map by default, which while technically correct is not very useful to me.
+
+## What good is this?
+
+So, what good is this?  Now you have three object declarations instead of one, what does this buy you?  First off, this isn't much more work.  Its about on par for doing a large class definition in an object oriented language, but the getters are free.
+
+What else is there?
+
+Property access works!
 
 {% highlight ts %}
 let user = new User();
-
-// works, typescript knows about it.
-// Have some auto-complete while we're at it.
-let fName = user.firstName;
-
-// A little kludgey for my taste, but no casting required
-user = user.set('firstName', '...');  
-
-// This works too
-return user                 
-  .set('firstName', '...')
-  .set('lastName', '...')
-  .set('email', '...')
-
-// This is now a compile error instead of just a runtime error
-user.firstName = '...';  
-
+// no typescript error here
+let firstName = user.firstName;
+// vs
+let oldWay = user.get('firstName') as string;
 {% endhighlight %}
 
-This is a bit more code than using the RecordClass directly, but now it plays nicely with Typescript.  There is also the added benefit of enforcing some type-safety within the set function.  Record.set() takes an 'any' for its value, but my user class will only accept strings, and Typescript will tell you right in your IDE.
+I'm a little excited for that one, as now my IDE can autocomplete my properties instead of looking at the definition to lookup key values.
+
+You can chain operations! (I'll admit this is a contrived example, but it works nonetheless)
+
+{% highlight ts %}
+let user = new User();
+// no typescript error here
+let newUser = user.set('firstName', fname)
+                  .set('lastName', lastName)
+                  .set('email', email)
+{% endhighlight %}
+
+This doesn't benefit from IDE autocompletion, but I do a number of long chains like this when I am updating redux records.  Simplified Redux reducers should be on everyone's christmas list.
+
+## TL;DR
+
+You can wrap/inherit an Immutable record into a Typescript class, that lets you avoid casting and other problems.  Property getters work, and you can add custom setters.
+
+This is a bit more code than using the RecordClass directly, but now it plays nicely with Typescript.
