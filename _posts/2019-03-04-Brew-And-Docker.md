@@ -47,6 +47,6 @@ For anybody less familiar with docker, the broken down command is
 
 # Results
 
-This almost worked like a charm.  That image does not have `vi`, `vim`, or `nano` installed, and it had to initiaze both rebar and Hex.  Easily fixed by just tagging a local image with those setup.  I ran my mix tasks, and captured for later (both in my notes, and on here).
+This almost worked like a charm.  That image does not have `vi`, `vim`, or `nano` installed, and it had to initiaze both rebar and Hex.  Editing files is a snap as the locally mounted folder is available to yuor editor or IDE of choice.  Adding dependencies is as easy as tagging a new docker image to launch from.  I ran my mix tasks, and captured for later (both in my notes, and on here).
 
 If Docker is already part of your flow, this is a simple trick for managing dependencies that you are already using for production builds.
