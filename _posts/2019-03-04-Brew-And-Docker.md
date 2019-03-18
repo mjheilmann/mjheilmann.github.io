@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introductions
+title: Homebrew broke my flow, Docker to the rescue!
 ---
 
 I faced a common problem this morning, but not in a place I would ever expect:  Homebrew.  There is a storm of negligence that came to a head with me unable to run any of my production APIs.
