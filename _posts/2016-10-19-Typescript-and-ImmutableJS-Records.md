@@ -50,7 +50,13 @@ export class User extends UserClass implements IUser {
 
 That right there is our typescript class definition.  That is what we will instantiate, and pass around.  It is an immutable Record, and behaves exactly like a record, but it is understandable by both my Typescript IDE and my compiler.
 
-Inside of the User class, you can replace the generic set() function with normal object-oriented setters to enable better type safety.  But I will admit here that I have a class or two that use set(key: string, object: type1 | type2 | type3 | type4 | type5).  We also cast the types back to a User isntance from set(), which is correct.  Immutable typings definitions return a map by default, which while technically correct is not very useful to me.
+Inside of the User class, you can replace the generic set() function with normal object-oriented setters to enable better type safety.  But I will admit here that I have a class or two that use 
+
+{% highlight ts %}
+set(key: string, object: type1 | type2 | type3 | type4 | type5)
+{% endhighlight %}
+  
+We also cast the types back to a User isntance from set(), which is correct.  Immutable typings definitions return a map by default, which while technically correct is not very useful to me.
 
 ## What good is this?
 
