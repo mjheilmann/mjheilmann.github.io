@@ -4,8 +4,30 @@ title: About
 permalink: /about/
 ---
 
-I am a Software Engineer and Software Architect currently located in Central Florida.  I attended Washington State University Vancouver for my Bachelors of Science in Computer Science, graduating with a Mathematics minor in 2009.  I continued there for my Masters of Science degree in Computer Science in 2011.
+## Who am I
 
-I currently work for the University of Central Florida; specifically in the Institute for Simulation and Training.  I work closely with with local Army Research Lab branches on simulations and training effectiveness studies.  Pretty boring stuff really.
+I am a Software Engineer and Software Architect currently located in Central Florida.  I attended Washington State University Vancouver for my Bachelors of Science in Computer Science, graduating with a Mathematics minor in 2009.  I continued there for my Masters of Science degree in Computer Science in 2011.  Thanks to the great advisors and faculty at the WSU-Vancouver campus, I finished my coursework in 2010, and began working professionally while completing my Master thesis on security analysis of cyber-physical systems.
 
-I'm more interested in the difference between Radial and Rotary internal combustion engines, or what people mean when they say Liquid Fluoride Thorium Reactors can't explode.  Perhaps the etymology of "Neither here nor there".  But that is - as they say - neither here nor there.
+I am a product of the places I've worked, and the things I have either been forced to care about, or grew to appreciate.  Here are some brief descriptions, but I'll be making posts over some of the work I did here and what it means to me now.
+
+## University of Central Florida
+
+The part of UCF I was working in wasn't a college at the time, and was entirely funded through grants and research cooperations with the US Army, US Navy, and US AirForce, who have multiple buildings around UCF in Orlando FL.  I was surrounded by PhDs and program managers, and filled in whatever technical or other gaps were needed for the research goals.
+
+This was my first professional coding job, as a research associate at the Institute for Simulation and Training at UCF.  This job was a many-hats situation, as I was doing contract support for Army Research.  I had a local virtualized cluster I was maintaining, remote enclave installation support for our simulator, and Node/Python/C# bugfixing and tooling development for the simulator.
+
+## FanHero
+
+Fanhero is a kind of social networking startup, specializing in white label apps that replicate some common online interactions for organizations and celebrities.  The content-creator would post text, images, audio, video, links, etc.  The users of the particular app would like, comment, respond, etc on the posts.  Their livestreaming stack was very good.
+
+I was a Sr Software Engineer here for around 2 years.  I was brought in as a high-velocity single-contributor for their existing back-end API, database, deployment and external integrations.  The first half was working in their existing nodejs framework, and learning to hate bad code.  Through the power of getting spammed thousands of qos support notifications while spending time with my family, I did something about it.
+
+The second half of my time at Fanhero was spent on these self-assigned tasks:  Replace the janky Node framework with something better, increase testing coverage of the API and database to save my own sanity, and spread this gospel of doing it right to other teams through direct interactions and mentorship of of other developers.
+
+## Luminar Technologies
+
+Talk about a context shift.  While this is also a startup company, this company is in the automotive sector building LiDAR systems and associated software / perception stacks for safety and autonomous vehicle systems.
+
+I have only considered myself a dabbler in C/C++ at this point.  That isn't fair to dabblers, as C was my first programming language 15 years prior, and I had picked up C++ on the way.  I even used it academically and at UCF for projects, I just never did it ful time until now.  I still make mistakes sometimes and write bad code, but I do not have the interest or motivation at turning into a low-level C graybeard when there is more than enough work just organizing and establishing interfaces; something I've been doing since college.
+
+I've filled the roles of Lead, Mentor, and Product-Owner a few times, but here rubber met the road.  As of this writing, I am a Staff Software Engineer, a Technical Lead over an international team of engineers, as well as the Product Owner in a SAFe context.
