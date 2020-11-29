@@ -7,7 +7,7 @@ I faced a common problem this morning, but not in a place I would ever expect:  
 
 The problem?  _Homebrew's default behavior in 2.0_
 
-# My Broken Dev Environment
+## My Broken Dev Environment
 
 You see, I had several things align that resulted in my inability to run my production code locally:
 
@@ -24,7 +24,7 @@ So, Here I am Monday morning, unable to run my production scripts as my workstat
 
 This would have been less of a problem if I could simply reinstall the old version and `switch` to it, but the older versions are unpublished by the Elixir team, which is another issue in and of its-self.
 
-# Docker to the Rescue
+## Docker to the Rescue
 
 2 years ago I worked full-time on a linux workstation, using the vanilla package managers.  One strategy I adopted in dependency management was to use Docker containers for local dev.  I didn't have to learn any non-standard package management for whatever language I was using at the time, and I was already building docker containers for deployment.
 
@@ -45,7 +45,7 @@ For anybody less familiar with docker, the broken down command is
 | elixir:1.6 | This is the image we are running |
 | bash | This is the command that Docker is running for us interactively |
 
-# Results
+## Results
 
 This almost worked like a charm.  That image does not have `vi`, `vim`, or `nano` installed, and it had to initiaze both rebar and Hex.  Editing files is a snap as the locally mounted folder is available to yuor editor or IDE of choice.  Adding dependencies is as easy as tagging a new docker image to launch from.  I ran my mix tasks, and captured for later (both in my notes, and on here).
 
