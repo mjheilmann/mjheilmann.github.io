@@ -13,7 +13,7 @@ linkedin_username: mjheilmann
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: jekyll-theme-dinky
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
