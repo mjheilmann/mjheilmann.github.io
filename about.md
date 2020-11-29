@@ -10,6 +10,12 @@ I am a Software Engineer and Software Architect currently located in Central Flo
 
 I am a product of the places I've worked, and the things I have either been forced to care about, or grew to appreciate.  Here are some brief descriptions, but I'll be making posts over some of the work I did here and what it means to me now.
 
+## Sharp Labs of America
+
+While in college I pushed for internships and experience, and I had tremendous luck with Sharp.  This was the Camas, Washington location, while their software engineers and researchers are in California.
+
+So what is a software engineering intern doing at the wrong location?  I was a direct asset for an optics team that was leveraging new technologies for prototyping.  I was going in-the-cloud image processing from an Android G1.  I was piecing together some code glue and algorithm development for novel imaging and scanning concepts these guys were implementing.  It was hands-on applied algorithms and data pipelines, it was great!  I had two summers here before I moved on to my masters program.
+
 ## University of Central Florida
 
 The part of UCF I was working in wasn't a college at the time, and was entirely funded through grants and research cooperations with the US Army, US Navy, and US AirForce, who have multiple buildings around UCF in Orlando FL.  I was surrounded by PhDs and program managers, and filled in whatever technical or other gaps were needed for the research goals.
