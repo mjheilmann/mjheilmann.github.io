@@ -83,3 +83,17 @@ For the rest of us, if you are deciding how to scale when you need to scale, you
 OK, so all of this is a long-winded way to say: Roadmap and plan before coupling into a platform, runtime, programming language.  Velocity may look good when some engineers are unleashed and they just start coding, knowing what your are creating, and then selecting to best support that up-front will pay off in spades when your success comes.
 
 If not, you are rolling the dice on whether your technical stack will become the victim of your success.
+
+Some basic questions to try to help with this kind of planning:
+
+1. What does your success look like?
+1. What are your expected problems in the face of sudden success?
+1. What does maintenance look like?
+1. If you were immediately successful (yay!), what does a platform cost?
+1. Do you have a range of expected ongoing development costs, and why doesn't that account for better Software Design, Development, and Testing?
+
+> In any moment of decision, the best thing you can do is the right thing, the next best thing is the wrong thing, and the worst thing you can do is nothing.
+>
+> Theodore Roosevelt
+
+It is perfectly reasonable to re-evaluate past decisions in a new light, and that doesn't make them wrong decisions.  Should you find yourself up a creek, even with NodeJS, there are ways out, if you can catch the problem and plan your solution.
